@@ -1,9 +1,9 @@
 plugins {
-  alias(libs.plugins.android.application)
-  alias(libs.plugins.kotlin.compose)
-  alias(libs.plugins.google.devtools.ksp)
-  alias(libs.plugins.kotlin.parcelize)
-  alias(libs.plugins.roborazzi)
+   alias(libs.plugins.android.application)
+   alias(libs.plugins.kotlin.compose)
+   alias(libs.plugins.google.devtools.ksp)
+   alias(libs.plugins.kotlin.parcelize)
+   alias(libs.plugins.roborazzi)
 }
 
 val signingKeys = listOf(
@@ -37,6 +37,14 @@ android {
     targetSdk = 35
     versionCode = 1
     versionName = "1.0"
+
+    // Add your API key here from local gradle properties or environment variable.
+    // Example: LASHINT_API_KEY="your_key_here" in ~/.gradle/gradle.properties
+    buildConfigField(
+      "String",
+      "API_KEY",
+      "\"${project.findProperty("LASHINT_API_KEY") ?: System.getenv("LASHINT_API_KEY") ?: ""}\""
+    )
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
