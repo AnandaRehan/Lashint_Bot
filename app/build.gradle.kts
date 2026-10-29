@@ -3,6 +3,7 @@ plugins {
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.google.devtools.ksp)
   alias(libs.plugins.kotlin.parcelize)
+  alias(libs.plugins.roborazzi)
 }
 
 val signingKeys = listOf(
@@ -61,8 +62,8 @@ android {
     release {
       signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
       isCrunchPngs = false
-      isMinifyEnabled = false
-      isShrinkResources = false
+      isMinifyEnabled = true
+      isShrinkResources = true
       proguardFiles(
           getDefaultProguardFile("proguard-android-optimize.txt"),
           "proguard-rules.pro"
@@ -85,6 +86,17 @@ android {
     includeInApk = false
     includeInBundle = true
   }
+}
+
+roborazzi {
+    // Screenshots are written here instead of build/outputs/roborazzi.
+    // Recording on plain `testDebugUnitTest` is switched on in gradle.properties.
+    outputDir.set(file("src/test/screenshots"))
+}
+
+tasks.withType<Test>().configureEach {
+    // Gradle's default 512 MB test heap is tight for Robolectric + Compose.
+    maxHeapSize = "2g"
 }
 
 // Some unused dependencies are commented out below instead of being removed.
