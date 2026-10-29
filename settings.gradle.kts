@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Lashint_Bot"
+rootProject.name = "Lashint Bot"
 
 include(":app")
