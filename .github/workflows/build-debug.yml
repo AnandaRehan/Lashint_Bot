@@ -73,7 +73,7 @@ jobs:
           fi
           ./gradlew recordRoborazziDebug testDebugUnitTest --no-daemon --stacktrace
 
-      -  name: Create .env from GitHub Secrets
+      - name: Create .env from GitHub Secrets
         env:
           TIKWM_API_KEY: ${{ secrets.TIKWM_API_KEY }}
           NAZE_API_KEY: ${{ secrets.NAZE_API_KEY }}
