@@ -95,7 +95,7 @@ import com.ehan.lashintbot.ui.MainViewModel
 import com.ehan.lashintbot.ui.screen.ChatScreen
 import com.ehan.lashintbot.ui.screen.GalleryScreen
 import com.ehan.lashintbot.service.FloatingDownloaderService
-import com.ehan.lashintbot.ui.theme.lashintbotTheme
+import com.ehan.lashintbot.ui.theme.LashintBotTheme
 import com.ehan.lashintbot.ui.theme.AppPalette
 import com.ehan.lashintbot.ui.theme.ThemeMode
 import kotlinx.coroutines.launch

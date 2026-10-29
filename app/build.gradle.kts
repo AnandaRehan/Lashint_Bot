@@ -1,9 +1,9 @@
 plugins {
-   alias(libs.plugins.android.application)
-   alias(libs.plugins.kotlin.compose)
-   alias(libs.plugins.google.devtools.ksp)
-   alias(libs.plugins.kotlin.parcelize)
-   alias(libs.plugins.roborazzi)
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.compose)
+  alias(libs.plugins.google.devtools.ksp)
+  alias(libs.plugins.kotlin.parcelize)
+  alias(libs.plugins.roborazzi)
 }
 
 val signingKeys = listOf(
@@ -13,7 +13,7 @@ val signingKeys = listOf(
     "RELEASE_KEY_PASSWORD",
 )
 val releaseSigning: Map<String, String> = signingKeys.mapNotNull { name ->
-    (providers.environmentVariable(name).orNull ?: providers.gradleProperty(name).orNull ?: System.getenv(name) ?: null)
+    (providers.environmentVariable(name).orNull ?: providers.gradleProperty(name).orNull ?: System.getenv(name))
         ?.takeIf { it.isNotBlank() }
         ?.let { name to it }
 }.toMap()
@@ -38,12 +38,37 @@ android {
     versionCode = 1
     versionName = "1.0"
 
-    // Add your API key here from local gradle properties or environment variable.
-    // Example: LASHINT_API_KEY="your_key_here" in ~/.gradle/gradle.properties
+    val lashintkey = providers.gradleProperty("LASHINT_API_KEY")
+      .orElse(providers.environmentVariable("LASHINT_API_KEY"))
+      .orElse(System.getenv("LASHINT_API_KEY") ?: "")
+      .orElse("")
+
+    val tikwmKey = providers.gradleProperty("TIKWM_API_KEY")
+      .orElse(providers.environmentVariable("TIKWM_API_KEY"))
+      .orElse(System.getenv("TIKWM_API_KEY") ?: "")
+      .orElse("")
+
+    val nazeKey = providers.gradleProperty("NAZE_API_KEY")
+      .orElse(providers.environmentVariable("NAZE_API_KEY"))
+      .orElse(System.getenv("NAZE_API_KEY") ?: "")
+      .orElse("")
+
     buildConfigField(
       "String",
-      "API_KEY",
-      "\"${project.findProperty("LASHINT_API_KEY") ?: System.getenv("LASHINT_API_KEY") ?: ""}\""
+      "TIKWM_API_KEY",
+      "\"${tikwmKey.get()}\""
+    )
+
+    buildConfigField(
+      "String",
+      "NAZE_API_KEY",
+      "\"${nazeKey.get()}\""
+    )
+
+    buildConfigField(
+      "String",
+      "LASHINT_API_KEY",
+      "\"${lashintkey.get()}\""
     )
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
