@@ -73,21 +73,6 @@ jobs:
           fi
           ./gradlew recordRoborazziDebug testDebugUnitTest --no-daemon --stacktrace
 
-      - name: Create .env from GitHub Secrets
-        env:
-          TIKWM_API_KEY: ${{ secrets.TIKWM_API_KEY }}
-          NAZE_API_KEY: ${{ secrets.NAZE_API_KEY }}
-        run: |
-          cp .env.example .env
-          if [ -n "$TIKWM_API_KEY" ]; then
-            sed -i "s|TIKWM_API_KEY=.*|TIKWM_API_KEY=$TIKWM_API_KEY|g" .env
-            echo "TIKWM_API_KEY injected from GitHub Secrets."
-          fi
-          if [ -n "$NAZE_API_KEY" ]; then
-            sed -i "s|NAZE_API_KEY=.*|NAZE_API_KEY=$NAZE_API_KEY|g" .env
-            echo "NAZE_API_KEY injected from GitHub Secrets."
-          fi
-
       - name: Build Debug APK
         env:
           RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
