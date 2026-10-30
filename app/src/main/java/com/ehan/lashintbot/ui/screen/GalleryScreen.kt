@@ -332,7 +332,7 @@ fun GalleryScreen(
                             )
                         ) {
                             Icon(
-                                imageVector = Icons.Default.Chat,
+                                imageVector = Icons.AutoMirrored.Filled.Chat,
                                 contentDescription = null,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -924,7 +924,7 @@ fun MediaPreviewDialog(
                         border = BorderStroke(1.dp, Color.White.copy(alpha = 0.5f))
                     ) {
                         Icon(
-                            imageVector = Icons.Default.OpenInNew,
+                            imageVector = Icons.AutoMirrored.Filled.OpenInNew,
                             contentDescription = null,
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)

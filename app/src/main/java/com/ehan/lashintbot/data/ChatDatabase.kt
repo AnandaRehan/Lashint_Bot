@@ -122,7 +122,7 @@ abstract class ChatDatabase : RoomDatabase() {
                             MIGRATION_3_4,
                             MIGRATION_4_5
                         )
-                        .fallbackToDestructiveMigration()
+                        .fallbackToDestructiveMigration(true)
                         .build()
 
                 INSTANCE = instance

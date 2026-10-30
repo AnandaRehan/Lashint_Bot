@@ -474,15 +474,16 @@ class FloatingDownloaderService : Service() {
 
     private fun vibrate(durationMs: Long) {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
-                vibratorManager?.defaultVibrator?.vibrate(
+            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+            if (vibrator == null) return
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(
                     VibrationEffect.createOneShot(durationMs, VibrationEffect.DEFAULT_AMPLITUDE)
                 )
             } else {
                 @Suppress("DEPRECATION")
-                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
-                vibrator?.vibrate(durationMs)
+                vibrator.vibrate(durationMs)
             }
         } catch (_: Exception) {
         }
