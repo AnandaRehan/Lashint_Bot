@@ -1,20 +1,20 @@
 package com.ehan.lashintbot
 
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onRoot
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ehan.lashintbot.ui.theme.LashintBotTheme
-import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-@Config(qualifiers = RobolectricDeviceQualifiers.Pixel8, sdk = [36])
+// SDK 35 runs on JDK 17+; SDK 36 would require JDK 21.
+@Config(sdk = [35], qualifiers = "w360dp-h640dp-xxhdpi")
 class GreetingScreenshotTest {
 
   @get:Rule val composeTestRule = createComposeRule()
@@ -23,6 +23,6 @@ class GreetingScreenshotTest {
   fun MainScreen() {
     composeTestRule.setContent { GreetingPreview() }
 
-    composeTestRule.onRoot().captureRoboImage(filePath = "src/test/screenshots/MainScreen.png")
+    composeTestRule.onRoot().captureRoboImage()
   }
 }
