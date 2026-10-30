@@ -167,10 +167,10 @@ fun ChatScreen(
                             val payload = BaileysSocket.parsePayload(msg.payloadJson)
                             val copyText = payload?.caption ?: payload?.text ?: msg.text
                             // clipboardManager.setText(AnnotatedString(copyText))
-                            // clipboard.setText(AnnotatedString(copyText))
-                            LaunchedEffect(copyText) {
+                            clipboard.setText(AnnotatedString(copyText))
+                            /**LaunchedEffect(copyText) {
                                 clipboard.setText(AnnotatedString(copyText))
-                            }
+                            }*/
                             selectedMessageIds = emptySet()
                             scope.launch {
                                 snackbarHostState.showSnackbar("Pesan disalin ke clipboard")
