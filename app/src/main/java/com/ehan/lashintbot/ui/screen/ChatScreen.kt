@@ -53,6 +53,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.AnnotatedString
@@ -73,7 +74,8 @@ fun ChatScreen(
     onOpenDrawer: () -> Unit = {}
 ) {
     val context = LocalContext.current
-    val clipboardManager = LocalClipboardManager.current
+    // val clipboardManager = LocalClipboardManager.current
+    val clipboard = LocalClipboard.current
 
     val networkMonitor = remember {
         NetworkMonitor(
@@ -164,7 +166,11 @@ fun ChatScreen(
                         if (msg != null) {
                             val payload = BaileysSocket.parsePayload(msg.payloadJson)
                             val copyText = payload?.caption ?: payload?.text ?: msg.text
-                            clipboardManager.setText(AnnotatedString(copyText))
+                            // clipboardManager.setText(AnnotatedString(copyText))
+                            // clipboard.setText(AnnotatedString(copyText))
+                            LaunchedEffect(copyText) {
+                                clipboard.setText(AnnotatedString(copyText))
+                            }
                             selectedMessageIds = emptySet()
                             scope.launch {
                                 snackbarHostState.showSnackbar("Pesan disalin ke clipboard")

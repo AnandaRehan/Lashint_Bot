@@ -490,7 +490,11 @@ class TikWmService {
         fun formatCreateTime(epochSeconds: Long?): String {
             if (epochSeconds == null || epochSeconds <= 0L) return "-"
             val date = Date(epochSeconds * 1000L)
-            val localeId = Locale("id", "ID")
+            val localeId = Locale.Builder()
+                .setLanguage("id")
+                .setRegion("ID")
+                .build()
+            // Locale.forLanguageTag("id-ID")
             val hari = SimpleDateFormat("EEEE", localeId).format(date)
             val tanggalBulan = SimpleDateFormat("d MMMM", localeId).format(date)
             val pukul = SimpleDateFormat("HH.mm.ss", localeId).format(date)

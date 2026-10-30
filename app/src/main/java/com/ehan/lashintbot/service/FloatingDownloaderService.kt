@@ -474,7 +474,12 @@ class FloatingDownloaderService : Service() {
 
     private fun vibrate(durationMs: Long) {
         try {
-            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+            // val vibrator = ContextCompat.getSystemService(this, Vibrator::class.java)
+            // val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+
+            @Suppress("DEPRECATION")
+            val vibrator = getSystemService(Vibrator::class.java)
+
             if (vibrator == null) return
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
