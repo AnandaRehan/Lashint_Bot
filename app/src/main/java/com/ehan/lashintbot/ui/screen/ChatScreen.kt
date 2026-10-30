@@ -1,5 +1,6 @@
 package com.ehan.lashintbot.ui.screen
 
+import android.content.ClipData
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -53,6 +54,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 // import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.ClipEntry
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -171,7 +173,6 @@ fun ChatScreen(
                             /**LaunchedEffect(copyText) {
                                 clipboard.setText(AnnotatedString(copyText))
                             }*/
-                        
                             scope.launch {
                                 clipboard.setClipEntry(
                                     ClipEntry(
