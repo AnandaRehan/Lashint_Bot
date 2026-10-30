@@ -21,7 +21,7 @@ class GreetingScreenshotTest {
 
   @Test
   fun MainScreen() {
-    composeTestRule.setContent { MainScreenPreview() }
+    composeTestRule.setContent { GreetingPreview() }
 
     composeTestRule.onRoot().captureRoboImage(filePath = "src/test/screenshots/MainScreen.png")
   }
