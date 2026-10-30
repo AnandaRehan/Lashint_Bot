@@ -172,7 +172,11 @@ fun ChatScreen(
                                 clipboard.setText(AnnotatedString(copyText))
                             }*/
                             scope.launch {
-                                clipboard.setText(AnnotatedString(copyText))
+                                clipboard.setClipEntry(
+                                    ClipEntry(
+                                        ClipData.newPlainText("label", copyText)
+                                    )
+                                )
                                 selectedMessageIds = emptySet()
                                 snackbarHostState.showSnackbar("Pesan disalin ke clipboard")
                             }
