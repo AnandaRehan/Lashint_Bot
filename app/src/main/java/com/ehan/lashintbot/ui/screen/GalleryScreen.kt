@@ -431,7 +431,13 @@ fun MediaItemCard(
     val context = LocalContext.current
     val dateStr = remember(media.timestamp) {
         try {
-            val sdf = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale("id", "ID"))
+            val sdf = SimpleDateFormat(
+                "dd MMM yyyy, HH:mm",
+                Locale.Builder()
+                    .setLanguage("id")
+                    .setRegion("ID")
+                    .build()
+            )
             sdf.format(Date(media.timestamp))
         } catch (_: Exception) {
             ""
