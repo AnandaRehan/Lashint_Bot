@@ -176,7 +176,8 @@ fun ChatScreen(
                             scope.launch {
                                 clipboard.setClipEntry(
                                     ClipEntry(
-                                        ClipData.newPlainText("label", copyText).toClipEntry()
+                                        ClipData.newPlainText("label", copyText)
+                                            //.toClipEntry()
                                     )
                                 )
                                 selectedMessageIds = emptySet()
