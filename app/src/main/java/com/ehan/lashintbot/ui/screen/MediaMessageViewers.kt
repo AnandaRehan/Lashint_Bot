@@ -191,7 +191,7 @@ fun InlineVideoPlayer(
 
                 IconButton(
                     onClick = {
-                        val resolvedName = fileName ?: "hd-${System.currentTimeMillis()}.mp4"
+                        val resolvedName = fileName ?: "sd-${System.currentTimeMillis()}.mp4"
                         onDownloadClick(videoUrl, "Video ($resolvedName)", resolvedName)
                     },
                     modifier = Modifier.size(34.dp),
@@ -381,7 +381,7 @@ fun TikTokCarouselViewer(
                     if (showLiveVideo && !item.videoUrl.isNullOrBlank()) {
                         val vidFileName = item.videoFileName
                             ?: item.fileName
-                            ?: "hd-${System.currentTimeMillis()}-slide${page + 1}.mp4"
+                            ?: "sd-${System.currentTimeMillis()}-slide${page + 1}.mp4"
                         InlineVideoPlayer(
                             videoUrl = item.videoUrl,
                             thumbnailUrl = item.imageUrl,
@@ -565,7 +565,7 @@ fun TikTokCarouselViewer(
 
             val currentSlide = slides[pagerState.currentPage]
             val currentFileName = currentSlide.fileName ?: if (currentSlide.type == SlideMediaType.VIDEO) {
-                "hd-${System.currentTimeMillis()}-slide${pagerState.currentPage + 1}.mp4"
+                "sd-${System.currentTimeMillis()}-slide${pagerState.currentPage + 1}.mp4"
             } else {
                 "img-${System.currentTimeMillis()}-slide${pagerState.currentPage + 1}.jpg"
             }

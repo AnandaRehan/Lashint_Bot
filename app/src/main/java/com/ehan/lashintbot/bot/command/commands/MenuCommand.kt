@@ -89,7 +89,7 @@ $menuText
                 buttons = listOf(
                     BotButton(
                         buttonId = "/tiktok",
-                        buttonText = ButtonText("🎬 TikTok HD"),
+                        buttonText = ButtonText("🎬 TikTok"),
                         type = BotButton.TYPE_REPLY
                     ),
                     BotButton(

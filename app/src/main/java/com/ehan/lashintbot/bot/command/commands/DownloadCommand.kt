@@ -40,7 +40,7 @@ class DownloadCommand(
             📥 DOWNLOADER MENU
 
             1️⃣ TikTok Downloader (${if (tikKeyOk) "✅ Key Aktif" else "⚠️ Key Belum Diatur"})
-            • /tiktok <url_tiktok> — Video HD, Foto, & Slide
+            • /tiktok <url_tiktok> — Video, Foto, & Slide
             • /tiktok key <apikey> — Pasang API Key TikWM
 
             2️⃣ YouTube Downloader (${if (ytKeyOk) "✅ Key Aktif" else "⚠️ Key Belum Diatur"})
@@ -86,7 +86,7 @@ class DownloadCommand(
                 buttons = listOf(
                     BotButton(
                         buttonId = "/tiktok",
-                        buttonText = ButtonText("🎬 Panduan TikTok HD"),
+                        buttonText = ButtonText("🎬 Panduan TikTok"),
                         type = BotButton.TYPE_REPLY
                     ),
                     BotButton(

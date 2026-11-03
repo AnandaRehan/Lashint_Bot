@@ -16,7 +16,7 @@ class TikTokCommand(
     override val name = "tiktok"
 
     override val description =
-        "Download video, foto tunggal, & slide TikTok tanpa watermark (HD)"
+        "Download video, foto tunggal, & slide TikTok tanpa watermark"
 
     override val category =
         "Download"
@@ -27,7 +27,7 @@ class TikTokCommand(
             val hasKey = TikWmService.getActiveApiKey().isNotEmpty()
             val keyStatus = if (hasKey) "✅ Terpasang (Siap digunakan)" else "⚠️ Belum diatur"
             return """
-                🎬 TIKTOK DOWNLOADER (HD)
+                🎬 TIKTOK DOWNLOADER
 
                 Status API Key: $keyStatus
 

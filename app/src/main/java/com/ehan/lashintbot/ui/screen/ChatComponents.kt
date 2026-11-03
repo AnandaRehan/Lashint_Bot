@@ -106,7 +106,7 @@ data class QuickCommandItem(
 val QuickCommandList = listOf(
     QuickCommandItem(
         command = "/tiktok",
-        label = "TikTok HD",
+        label = "TikTok",
         description = "Unduh video & slide tanpa WM",
         icon = Icons.Filled.VideoFile,
         badgeColor = Color(0xFFE11D48)
@@ -683,7 +683,7 @@ fun EmptyChatState(
                     Spacer(modifier = Modifier.height(6.dp))
 
                     Text(
-                        text = "Tempel link TikTok langsung di chat untuk menerima balasan Video HD, Foto Tunggal, atau Slide Gabungan Foto & Video lengkap dengan tombol interaktif.",
+                        text = "Tempel link TikTok langsung di chat untuk menerima balasan Video, Foto Tunggal, atau Slide Gabungan Foto & Video lengkap dengan tombol interaktif.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.White.copy(alpha = 0.92f)
                     )
@@ -980,7 +980,7 @@ fun MessageBubble(
                             videoUrl = payload.video.url,
                             thumbnailUrl = payload.video.thumbnailUrl,
                             fileName = payload.video.fileName,
-                            badgeLabel = "🎬 VIDEO HD",
+                            badgeLabel = "🎬 VIDEO",
                             onDownloadClick = { url, label, fn ->
                                 enqueueFileDownload(
                                     context = context,
