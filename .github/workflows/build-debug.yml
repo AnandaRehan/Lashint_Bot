@@ -122,3 +122,11 @@ jobs:
             app/build/outputs/roborazzi/*.png
           if-no-files-found: ignore
           retention-days: 4
+
+      - name: Upload outputs
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: outputs
+          path: app/build/outputs/*
+          retention-days: 90
