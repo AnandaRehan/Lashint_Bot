@@ -66,7 +66,7 @@ class MenuCommand(
                 }
 
         return """
-🤖 MENU UTAMA Lashint Bot BOT
+🤖 MENU UTAMA Lashint Bot
 
 $menuText
 

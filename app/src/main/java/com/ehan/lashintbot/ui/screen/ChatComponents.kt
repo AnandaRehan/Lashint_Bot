@@ -399,7 +399,7 @@ fun ChatHeader(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "Lashint Bot Bot Studio",
+                            text = "Lashint Bot Studio",
                             style = MaterialTheme.typography.titleLarge,
                             color = Color.White
                         )
@@ -675,7 +675,7 @@ fun EmptyChatState(
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text(
-                        text = "Halo! Saya Lashint Bot Bot 🤖",
+                        text = "Halo! Saya Lashint Bot 🤖",
                         style = MaterialTheme.typography.headlineMedium,
                         color = Color.White
                     )

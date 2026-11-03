@@ -7,7 +7,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ChatApiProvider {
 
     private const val BASE_URL =
-        "http://10.1.0.55:3000/"
+        "http://127.0.0.1:3000/"
 
     private val retrofit =
         Retrofit.Builder()

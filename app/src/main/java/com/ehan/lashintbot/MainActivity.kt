@@ -708,6 +708,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     LashintBotTheme {
-        Greeting("Lashint Bot Bot Studio")
+        Greeting("Lashint Bot Studio")
     }
 }

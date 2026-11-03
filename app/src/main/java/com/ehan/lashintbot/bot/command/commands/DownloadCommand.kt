@@ -82,7 +82,7 @@ class DownloadCommand(
             jid = jid,
             content = BotMessageContent(
                 text = execute(null),
-                footer = "Lashint Bot Bot Downloader • sock.sendMessage",
+                footer = "Lashint Bot Downloader • sock.sendMessage",
                 buttons = listOf(
                     BotButton(
                         buttonId = "/tiktok",
