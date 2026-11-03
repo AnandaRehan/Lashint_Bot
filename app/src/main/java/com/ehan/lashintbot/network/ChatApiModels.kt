@@ -4,10 +4,10 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ChatRequest(
-    val message: String
+    val prompt: String
 )
 
 @JsonClass(generateAdapter = true)
 data class ChatResponse(
-    val reply: String
+    val text: String
 )
