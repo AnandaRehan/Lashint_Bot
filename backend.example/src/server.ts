@@ -1,18 +1,12 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
+
 const app = express();
-const port = 3000;
+const port: number = 3000;
 
 app.use(express.json());
 app.use(express.text({ type: "*/*" }));
-// Rute dasar (Halaman Utama)
-/**
-app.get("/", (req, res) => {
-    res.send("Hello World dari Express.js!");
-});
-*/
-// Contoh rute lain
 
-app.post("/api/ai", async (req, res) => {
+app.post("/api/ai", async (req: Request, res: Response) => {
     try {
         if (!req.body) {
             return res.status(400).json({
@@ -21,11 +15,13 @@ app.post("/api/ai", async (req, res) => {
             });
         }
         console.log(req.body);
-        let _prompt = req?.body?.prompt;
-        if (!_prompt && req?.body) {
+        
+        let _prompt: string | undefined = req?.body?.prompt;
+        
+        if (!_prompt && req?.body && typeof req.body === "object") {
             try {
-                for (const key in req.body) {
-                    const value = req.body[key];
+                for (const key in req.body as Record<string, unknown>) {
+                    const value = (req.body as Record<string, unknown>)[key];
 
                     if (typeof value === "string") {
                         _prompt = value;
@@ -34,9 +30,10 @@ app.post("/api/ai", async (req, res) => {
                 }
             } catch (_) {}
         }
-        const prompt = _prompt;
+        
+        const prompt: string | undefined = _prompt;
         console.log(prompt);
-        // Validasi input jika prompt kosong
+        
         if (!prompt) {
             return res.status(400).json({
                 code: 400,
@@ -45,16 +42,18 @@ app.post("/api/ai", async (req, res) => {
             });
         }
 
-        const response =
-            prompt == "Hi" ? "Halo juga coyy" : "Ini Adalah Respon ai";
-        res.json({
+        const response: string =
+            prompt === "Hi" ? "Halo juga coyy" : "Ini Adalah Respon ai";
+            
+        return res.json({
             code: 200,
             text: response,
             timestamp: Date.now()
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error AI:", error);
-        res.status(500).json({
+        // Menambahkan 'return' di sini untuk memperbaiki error TS7030
+        return res.status(500).json({
             code: 500,
             text: "Terjadi kesalahan pada server AI.",
             timestamp: Date.now()
@@ -62,34 +61,16 @@ app.post("/api/ai", async (req, res) => {
     }
 });
 
-app.get("/health", (req, res) => {
-    res.json({
+// Mengubah req menjadi _req untuk memperbaiki error TS6133
+app.get("/health", (_req: Request, res: Response) => {
+    return res.json({
         code: 200,
         timestamp: Date.now()
     });
 });
 
-// Rute GET Tambahan khusus untuk tes langsung di kolom URL Browser
-app.get("/api/ai/tes", async (req, res) => {
-    try {
-        // Mengambil prompt dari query URL (?prompt=...)
-        const prompt = req.query.prompt;
-
-        if (!prompt) {
-            return res.send(
-                "Silakan masukkan prompt di URL. Contoh: http://127.0.0"
-            );
-        }
-
-        // Menampilkan format JSON langsung di layar browser
-        res.json({ text: "Response.text" });
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-
-// Kode tambahan untuk melacak URL yang masuk
-app.use((req, res, next) => {
+// Mengubah res menjadi _res untuk memperbaiki error TS6133
+app.use((req: Request, _res: Response, next: NextFunction) => {
     console.log(`[Request Masuk] Method: ${req.method} | URL: ${req.url}`);
     next();
 });
