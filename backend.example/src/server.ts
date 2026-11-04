@@ -14,10 +14,9 @@ app.post("/api/ai", async (req: Request, res: Response) => {
                 timestamp: Date.now()
             });
         }
-        console.log(req.body);
-        
+
         let _prompt: string | undefined = req?.body?.prompt;
-        
+
         if (!_prompt && req?.body && typeof req.body === "object") {
             try {
                 for (const key in req.body as Record<string, unknown>) {
@@ -30,10 +29,10 @@ app.post("/api/ai", async (req: Request, res: Response) => {
                 }
             } catch (_) {}
         }
-        
+
         const prompt: string | undefined = _prompt;
         console.log(prompt);
-        
+
         if (!prompt) {
             return res.status(400).json({
                 code: 400,
@@ -44,7 +43,7 @@ app.post("/api/ai", async (req: Request, res: Response) => {
 
         const response: string =
             prompt === "Hi" ? "Halo juga coyy" : "Ini Adalah Respon ai";
-            
+
         return res.json({
             code: 200,
             text: response,
